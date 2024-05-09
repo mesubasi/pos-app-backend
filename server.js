@@ -1,9 +1,15 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const app = express();
+//server.js
 
+const express = require("express"); //For Backend
+const mongoose = require("mongoose"); //For MongoDB Connection
+const dotenv = require("dotenv"); // For .env
+const app = express();
+const cors = require("cors");
 const PORT = 5000;
+
+// routes
+const categoryRoute = require("./routes/categories");
+
 dotenv.config();
 
 const connect = async () => {
@@ -15,7 +21,11 @@ const connect = async () => {
   }
 };
 
-app.get("/", (req, res) => res.send("Hello World!"));
+//middlewares
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/categories", categoryRoute);
 
 app.listen(PORT, () => {
   connect();
