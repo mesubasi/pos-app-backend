@@ -9,7 +9,7 @@ router.get("/get-all-invoices", async (req, res) => {
     res.status(200).json(invoices);
     // res.send(Invoices);
   } catch (err) {
-    console.log(err);
+    res.status(500).json(err);
   }
 });
 
@@ -19,8 +19,8 @@ router.post("/add-invoices", async (req, res) => {
     const newInvoice = new Invoice(req.body);
     await newInvoice.save();
     res.status(200).json("Item added succesfully.");
-  } catch (error) {
-    res.status(400).json(error);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
