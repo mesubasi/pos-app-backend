@@ -29,7 +29,7 @@ router.put("/update-category", async (req, res) => {
   try {
     await Category.findOneAndUpdate({ _id: req.body.categoryId }, req.body);
     res.status(200).json("Item updated succesfully.");
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -39,7 +39,7 @@ router.delete("/delete-category", async (req, res) => {
   try {
     await Category.findOneAndDelete({ _id: req.body.categoryId });
     res.status(200).json("Item deleted succesfully.");
-  } catch (error) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
