@@ -28,9 +28,9 @@ const connect = async () => {
 };
 
 //middlewares
+app.use(logger());
 app.use(express.json());
 app.use(cors());
-app.use(logger());
 
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
