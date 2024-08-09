@@ -6,7 +6,6 @@ const dotenv = require("dotenv"); // For .env
 const app = express();
 const cors = require("cors");
 const logger = require("morgan");
-const jwt = require("jsonwebtoken");
 const PORT = 5000;
 
 // routes
