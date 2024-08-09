@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
-      return res.status(404).send({ error: "User not found!" });
+      return res.status(404).json({ error: "User not found!" });
     }
 
     const validPassword = await bcrypt.compare(
@@ -38,17 +38,26 @@ router.post("/login", async (req, res) => {
       return res.status(403).json({ error: "Invalid Password!" });
     }
 
-    const token = jwt.sign(
-      {
-        id: user._id,
-        email: user.email,
-      },
-      process.env.JWT_SECRET,
-      { expiresIn: "1m" }
+    const accessToken = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.ACCESS_TOKEN_SECRET,
+      { expiresIn: "15m" }
     );
 
+    const refreshToken = jwt.sign(
+      { id: user._id },
+      process.env.REFRESH_TOKEN_SECRET,
+      { expiresIn: "7d" }
+    );
+
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
     res.status(200).json({
-      token,
+      accessToken,
       user: {
         id: user._id,
         email: user.email,
@@ -56,7 +65,10 @@ router.post("/login", async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).json({ error: "Something went wrong!" });
+    res.status(500).json({ error: "Login failed", details: err.message });
   }
 });
+
+module.exports = router;
+
 module.exports = router;
