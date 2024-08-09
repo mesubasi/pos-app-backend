@@ -34,13 +34,28 @@ router.post("/login", async (req, res) => {
     );
 
     if (!validPassword) {
-      res.status(403).json("Invalid Password!");
-    } else {
-      res.status(200).json(user);
+      return res.status(403).json({ error: "Invalid Password!" });
     }
+
+    const token = jwt.sign(
+      {
+        id: user._id,
+        email: user.email,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "1h" }
+    );
+
+    res.status(200).json({
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        username: user.username,
+      },
+    });
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json({ error: "Something went wrong!" });
   }
 });
-
 module.exports = router;
