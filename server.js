@@ -15,6 +15,7 @@ const invoiceRoute = require("./routes/invoices");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const morgan = require("morgan");
+const verifyToken = require("./middlewares/verifyToken");
 
 dotenv.config();
 
@@ -36,7 +37,7 @@ app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/invoices", invoiceRoute);
 app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
+app.use("/api/users", verifyToken, userRoute);
 
 app.listen(PORT, () => {
   connect();
