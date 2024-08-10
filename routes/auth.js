@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
     const refreshToken = jwt.sign(
       { id: user._id },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "7d" }
+      { expiresIn: "1m" }
     );
 
     res.cookie("refreshToken", refreshToken, {
