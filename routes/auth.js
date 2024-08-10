@@ -26,7 +26,11 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
+<<<<<<< HEAD
       return res.status(404).json({ error: "User not found!" });
+=======
+      res.status(404).send({ error: "User not found!" });
+>>>>>>> parent of 88421c5 (Return Added for Auth.js)
     }
 
     const validPassword = await bcrypt.compare(
