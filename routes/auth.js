@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const router = require("express").Router();
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 //POST Register
 router.post("/register", async (req, res) => {
@@ -41,13 +41,13 @@ router.post("/login", async (req, res) => {
     const accessToken = jwt.sign(
       { id: user._id, email: user.email },
       process.env.ACCESS_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "15m" }
     );
 
     const refreshToken = jwt.sign(
       { id: user._id },
       process.env.REFRESH_TOKEN_SECRET,
-      { expiresIn: "1m" }
+      { expiresIn: "7d" }
     );
 
     res.cookie("refreshToken", refreshToken, {
@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
     });
 
     res.status(200).json({
-      token: accessToken,
+      accessToken,
       user: {
         id: user._id,
         email: user.email,
@@ -68,5 +68,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: "Login failed", details: err.message });
   }
 });
+
+module.exports = router;
 
 module.exports = router;
