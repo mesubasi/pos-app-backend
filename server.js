@@ -15,7 +15,6 @@ const invoiceRoute = require("./routes/invoices");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
 const morgan = require("morgan");
-const verifyToken = require("./middlewares/verifyToken");
 
 dotenv.config();
 
