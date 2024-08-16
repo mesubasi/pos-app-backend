@@ -28,7 +28,7 @@ const connect = async () => {
 };
 
 //middlewares
-app.use(logger());
+app.use(logger("combined"));
 app.use(express.json());
 app.use(cors());
 
