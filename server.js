@@ -6,7 +6,6 @@ const dotenv = require("dotenv"); // For .env
 const app = express();
 const cors = require("cors");
 const logger = require("morgan");
-const PORT = 5000;
 
 // routes
 const categoryRoute = require("./routes/categories");
@@ -17,6 +16,7 @@ const userRoute = require("./routes/users");
 const morgan = require("morgan");
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const connect = async () => {
   try {
