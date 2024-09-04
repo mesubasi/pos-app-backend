@@ -5,9 +5,8 @@ const CategorySchema = mongoose.Schema(
     title: { type: String, require: true },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 
-const Category = mongoose.model("categories", CategorySchema);
-module.exports = Category;
+module.exports = mongoose.model("categories", CategorySchema);
