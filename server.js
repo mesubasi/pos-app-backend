@@ -35,11 +35,7 @@ app.use(cors());
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/invoices", invoiceRoute);
-// Register route
-router.post("/register", userController.registerUser);
-
-// Login route
-router.post("/login", userController.loginUser);
+app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 
 app.listen(PORT, () => {

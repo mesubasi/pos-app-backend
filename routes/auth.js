@@ -1,26 +1,58 @@
-const express = require("express");
-const router = express.Router();
-const userController = require("../controllers/userController");
+const User = require("../models/User");
+const router = require("express").Router();
+const bcrypt = require("bcryptjs");
 
-// Kullanıcı kaydı
-router.post("/register", userController.registerUser);
+//POST Register
+router.post("/register", async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    const existingUser = await User.findOne({ email });
 
-// Kullanıcı girişi
-router.post("/login", userController.loginUser);
+    if (existingUser) {
+      return res.status(403).json({ error: "Email already in use!" });
+    }
 
-// Kimliği doğrulanmış kullanıcının bilgilerini al
-router.get("/me", userController.getLoggedInUser);
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+    });
+    await newUser.save();
+    res.status(200).json("A new user created successfully.");
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-// Admin: Tüm kullanıcıları al
-router.get("/", userController.getUsers);
+//POST Login
+router.post("/login", async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" });
+    }
 
-// Admin: ID'ye göre kullanıcı al
-router.get("/:id", userController.getUserById);
+    const validPassword = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
 
-// Kullanıcı veya admin: Kullanıcıyı güncelle
-router.put("/:id", userController.updateUser);
+    if (!validPassword) {
+      return res.status(403).json({ error: "Invalid Password!" });
+    }
 
-// Admin: Kullanıcıyı sil
-router.delete("/:id", userController.deleteUser);
+    res.status(200).json({
+      user: {
+        id: user._id,
+        email: user.email,
+        username: user.username,
+      },
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Login failed", details: err.message });
+  }
+});
 
 module.exports = router;
