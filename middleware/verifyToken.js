@@ -13,8 +13,7 @@ const verifyToken = (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: "Forbidden, invalid token" });
     }
-    // req.user içine tüm kullanıcı bilgilerini koymak yerine sadece ID'yi koyabilirsiniz
-    req.user = { id: decoded.id, email: decoded.email }; // Token'dan email ve ID'yi ayıkla
+    req.user = { id: decoded.id, email: decoded.email };
     next();
   });
 };
