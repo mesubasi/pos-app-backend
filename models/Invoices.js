@@ -11,8 +11,9 @@ const InvoicesSchema = mongoose.Schema(
     totalAmount: { type: Number, require: true },
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
-module.exports = mongoose.model("invoices", InvoicesSchema);
+const Invoices = mongoose.model("invoices", InvoicesSchema);
+module.exports = Invoices;
