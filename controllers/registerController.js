@@ -19,7 +19,7 @@ const handleRegister = async (req, res) => {
       password: hashedPassword,
     });
     await newUser.save();
-    res.status(200).json("A new user created successfully.");
+    res.status(201).json("A new user created successfully.");
   } catch (err) {
     res.status(500).json(err);
   }
