@@ -1,4 +1,6 @@
 //POST Register
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 const handleRegister = async (req, res) => {
   try {

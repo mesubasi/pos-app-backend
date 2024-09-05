@@ -1,4 +1,6 @@
 //POST Login
+const User = require("../models/User");
+const bcrypt = require("bcrypt");
 
 const handleLogin = async (req, res) => {
   try {
