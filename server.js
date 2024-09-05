@@ -13,6 +13,7 @@ const productRoute = require("./routes/products");
 const invoiceRoute = require("./routes/invoices");
 const authRoute = require("./routes/auth");
 const userRoute = require("./routes/users");
+const verifyJWT = require("./middleware/verifyJWT");
 const morgan = require("morgan");
 
 dotenv.config();
@@ -36,6 +37,7 @@ app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/invoices", invoiceRoute);
 app.use("/api/auth", authRoute);
+app.use(verifyJWT);
 app.use("/api/users", userRoute);
 
 connect().then(() => {
