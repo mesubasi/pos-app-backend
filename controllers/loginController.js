@@ -1,6 +1,7 @@
 //POST Login
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
   try {
@@ -14,7 +15,41 @@ const handleLogin = async (req, res) => {
       user.password
     );
 
-    if (!validPassword) {
+    if (validPassword) {
+      const accessToken = jwt.sign(
+        {
+          email: user.email,
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          algorithm: "HS256",
+          expiresIn: "50m",
+        }
+      );
+
+      const refreshToken = jwt.sign(
+        {
+          email: user.email,
+        },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          algorithm: "HS256",
+          expiresIn: "1d",
+        }
+      );
+
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000, // 1 gün
+        secure: true,
+        sameSite: "strict",
+      });
+
+      return res.status(200).json({
+        accessToken,
+        email: user.email,
+      });
+    } else {
       return res.status(403).json({ error: "Invalid Password!" });
     }
 
