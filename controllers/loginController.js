@@ -40,7 +40,7 @@ const handleLogin = async (req, res) => {
 
       res.cookie("jwt", refreshToken, {
         httpOnly: true,
-        maxAge: 24 * 60 * 60 * 1000, // 1 gün
+        maxAge: 24 * 60 * 60 * 1000,
         secure: true,
         sameSite: "strict",
       });
@@ -52,14 +52,6 @@ const handleLogin = async (req, res) => {
     } else {
       return res.status(403).json({ error: "Invalid Password!" });
     }
-
-    res.status(200).json({
-      user: {
-        id: user._id,
-        email: user.email,
-        username: user.username,
-      },
-    });
   } catch (err) {
     res.status(500).json({ error: "Login failed", details: err.message });
   }

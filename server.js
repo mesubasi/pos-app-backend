@@ -33,11 +33,11 @@ app.use(logger("combined"));
 app.use(express.json());
 app.use(cors());
 
+app.use(verifyJWT);
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/invoices", invoiceRoute);
 app.use("/api/auth", authRoute);
-app.use(verifyJWT);
 app.use("/api/users", userRoute);
 
 connect().then(() => {
