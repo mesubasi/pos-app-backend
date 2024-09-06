@@ -6,6 +6,7 @@ const dotenv = require("dotenv"); // For .env
 const app = express();
 const cors = require("cors");
 const logger = require("morgan");
+const cookieParser = require("cookie-parser");
 
 // routes
 const categoryRoute = require("./routes/categories");
@@ -32,12 +33,13 @@ const connect = async () => {
 app.use(logger("combined"));
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
+app.use("/api/auth", authRoute);
 app.use(verifyJWT);
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/invoices", invoiceRoute);
-app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 
 connect().then(() => {
