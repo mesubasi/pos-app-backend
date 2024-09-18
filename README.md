@@ -41,3 +41,16 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
    ```
 
    The application will start on http://localhost:5000
+
+## Technologies and Packages Used
+
+- **Node.js**
+- **express**
+- **bcryptjs**
+- **cookie-parser**
+- **cors**
+- **dotenv**
+- **jsonwebtoken**
+- **mongoose**
+- **morgan**
+- **nodemon**
