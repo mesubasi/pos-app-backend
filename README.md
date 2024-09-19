@@ -61,20 +61,45 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
 
 <p>The authentication API allows you to register, login, and manage JWT tokens (access and refresh tokens).</p>
 
-```sh
 #### Register a new user
+
+```sh
 Endpoint: POST /api/auth/register
 Body:
+{
+    "username":"username",
+    "email": "user@example.com",
+    "password": "yourpassword"
+}
+```
 
+#### Login an existing user
+
+```sh
+Endpoint: POST /api/auth/login
+Body:
 {
     "email": "user@example.com",
     "password": "yourpassword"
 }
-POST /api/auth/login: Login an existing user.
+```
+
+#### Retrieves the information of a single user by their unique ID
+
+```sh
+Endpoint: GET /api/
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "userID": ""
+}
+```
+
 GET /api/users/get-all-users: Retrieve a list of all users.
 POST /api/auth/refresh: Refresh the access token using the refresh token.
-GET /api/auth/logout: Logout the user by clearing the refresh token.
-```
 
 #### Category CRUD
 
