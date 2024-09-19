@@ -104,6 +104,9 @@ Body:
 
 ```sh
 Endpoint: GET /api/users/get-all-users
+
+Headers:
+Authorization: Bearer <your-access-token>
 ```
 
 #### Refresh the access token using the refresh token
@@ -147,6 +150,7 @@ Endpoint: PUT /api/categories/update-category
 Headers:
 Authorization: Bearer <your-access-token>
 
+Body:
 {
     "categoryId": "<MongoDB-object-id>",
     "title": "Xyz"
@@ -161,12 +165,13 @@ Endpoint: DELETE /api/categories/delete-category
 Headers:
 Authorization: Bearer <your-access-token>
 
+Body:
 {
     "categoryId": "<MongoDB-object-id>"
 }
 ```
 
-#### Product CRUD
+### Product CRUD
 
 <p>Endpoints for managing products:</p>
 
@@ -177,13 +182,37 @@ PUT /api/products/update-product: Update an existing product by ID.
 DELETE /api/products/delete-product: Delete a product by ID.
 ```
 
-#### Invoice CRUD
+### Invoice CRUD
 
 <p>Endpoints for managing invoices:</p>
 
+#### Get a list of all invoices
+
 ```sh
-GET /api/invoices/get-all-invoices: Get a list of all invoices.
-POST /api/invoices/add-invoices: Create a new invoice.
+Endpoint: GET /api/invoices/get-all-invoices
+
+Headers:
+Authorization: Bearer <your-access-token>
+```
+
+#### Create a new invoice
+
+```sh
+Endpoint: POST /api/invoices/add-invoices
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "customerName": "Test",
+    "phoneNumber": "00000000000",
+    "paymentMethod": "Cash",
+    "cartItems": ["item1","item2"],
+    "subTotal": 200,
+    "tax": 10,
+    "totalAmount": 210
+}
 ```
 
 ## License
