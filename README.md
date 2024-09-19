@@ -62,10 +62,10 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
 <p>The authentication API allows you to register, login, and manage JWT tokens (access and refresh tokens).</p>
 
 ```sh
-POST /api/auth/register: Register a new user. <br>
-POST /api/auth/login: Login an existing user. <br>
-GET /api/users/get-all-users: Retrieve a list of all users. <br>
-POST /api/auth/refresh: Refresh the access token using the refresh token. <br>
+POST /api/auth/register: Register a new user.
+POST /api/auth/login: Login an existing user.
+GET /api/users/get-all-users: Retrieve a list of all users.
+POST /api/auth/refresh: Refresh the access token using the refresh token.
 GET /api/auth/logout: Logout the user by clearing the refresh token.
 ```
 
@@ -74,9 +74,9 @@ GET /api/auth/logout: Logout the user by clearing the refresh token.
 <p>Endpoints for managing product categories:</p>
 
 ```sh
-GET /api/categories/get-all-category: Get a list of all categories. <br>
-POST /api/categories/add-category: Create a new category. <br>
-PUT /api/categories/update-category: Update an existing category by ID. <br>
+GET /api/categories/get-all-category: Get a list of all categories.
+POST /api/categories/add-category: Create a new category.
+PUT /api/categories/update-category: Update an existing category by ID.
 DELETE /api/categories/delete-category: Delete a category by ID.
 ```
 
@@ -85,9 +85,9 @@ DELETE /api/categories/delete-category: Delete a category by ID.
 <p>Endpoints for managing products:</p>
 
 ```sh
-POST /api/products/add-product: Get a list of all products. <br>
-GET /api/products/get-all-product: Create a new product. <br>
-PUT /api/products/update-product: Update an existing product by ID. <br>
+POST /api/products/add-product: Get a list of all products.
+GET /api/products/get-all-product: Create a new product.
+PUT /api/products/update-product: Update an existing product by ID.
 DELETE /api/products/delete-product: Delete a product by ID.
 ```
 
@@ -96,7 +96,7 @@ DELETE /api/products/delete-product: Delete a product by ID.
 <p>Endpoints for managing invoices:</p>
 
 ```sh
-GET /api/invoices/get-all-invoices: Get a list of all invoices. <br>
+GET /api/invoices/get-all-invoices: Get a list of all invoices.
 POST /api/invoices/add-invoices: Create a new invoice.
 ```
 
