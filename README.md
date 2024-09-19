@@ -27,11 +27,11 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
    Create a .env file in the root of the project and add the following variables:
 
    ```sh
-   PORT = e.g. 5000
-   FRONTEND_URI = http://localhost:5173 = pos app frontend or online service url
-   MONGO_URI = MongoDB Url
-   ACCESS_TOKEN_SECRET = random token for jwt
-   REFRESH_TOKEN_SECRET = random token for jwt
+   PORT = 5000
+   FRONTEND_URI = http://localhost:5173 (or the deployed frontend URL)
+   MONGO_URI = <Your MongoDB URL>
+   ACCESS_TOKEN_SECRET = <Your JWT Access Token Secret>
+   REFRESH_TOKEN_SECRET = <Your JWT Refresh Token Secret>
    ```
 
 4. Start the development server:
@@ -62,7 +62,14 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
 <p>The authentication API allows you to register, login, and manage JWT tokens (access and refresh tokens).</p>
 
 ```sh
-POST /api/auth/register: Register a new user.
+#### Register a new user
+Endpoint: POST /api/auth/register
+Body:
+
+{
+    "email": "user@example.com",
+    "password": "yourpassword"
+}
 POST /api/auth/login: Login an existing user.
 GET /api/users/get-all-users: Retrieve a list of all users.
 POST /api/auth/refresh: Refresh the access token using the refresh token.
