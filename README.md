@@ -61,36 +61,44 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
 
 <p>The authentication API allows you to register, login, and manage JWT tokens (access and refresh tokens).</p>
 
+```sh
 POST /api/auth/register: Register a new user. <br>
 POST /api/auth/login: Login an existing user. <br>
 GET /api/users/get-all-users: Retrieve a list of all users. <br>
 POST /api/auth/refresh: Refresh the access token using the refresh token. <br>
 GET /api/auth/logout: Logout the user by clearing the refresh token.
+```
 
 #### Category CRUD
 
 <p>Endpoints for managing product categories:</p>
 
+```sh
 GET /api/categories/get-all-category: Get a list of all categories. <br>
 POST /api/categories/add-category: Create a new category. <br>
 PUT /api/categories/update-category: Update an existing category by ID. <br>
 DELETE /api/categories/delete-category: Delete a category by ID.
+```
 
 #### Product CRUD
 
 <p>Endpoints for managing products:</p>
 
+```sh
 POST /api/products/add-product: Get a list of all products. <br>
 GET /api/products/get-all-product: Create a new product. <br>
 PUT /api/products/update-product: Update an existing product by ID. <br>
 DELETE /api/products/delete-product: Delete a product by ID.
+```
 
 #### Invoice CRUD
 
 <p>Endpoints for managing invoices:</p>
 
+```sh
 GET /api/invoices/get-all-invoices: Get a list of all invoices. <br>
 POST /api/invoices/add-invoices: Create a new invoice.
+```
 
 ## License
 
