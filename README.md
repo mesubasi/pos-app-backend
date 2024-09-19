@@ -65,6 +65,7 @@ This is the backend for the POS (Point of Sale) application built using MongoDB,
 
 ```sh
 Endpoint: POST /api/auth/register
+
 Body:
 {
     "username":"username",
@@ -77,6 +78,7 @@ Body:
 
 ```sh
 Endpoint: POST /api/auth/login
+
 Body:
 {
     "email": "user@example.com",
