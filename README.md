@@ -87,29 +87,81 @@ Body:
 #### Retrieves the information of a single user by their unique ID
 
 ```sh
-Endpoint: GET /api/
+Endpoint: GET /api/users
 
 Headers:
 Authorization: Bearer <your-access-token>
 
 Body:
 {
-    "userID": ""
+    "userID": "<MongoDB-object-id>"
 }
 ```
 
-GET /api/users/get-all-users: Retrieve a list of all users.
-POST /api/auth/refresh: Refresh the access token using the refresh token.
+#### Retrieve a list of all users
 
-#### Category CRUD
+```sh
+Endpoint: GET /api/users/get-all-users
+```
+
+#### Refresh the access token using the refresh token
+
+```sh
+Endpoint: POST /api/auth/refresh
+```
+
+### Category CRUD
 
 <p>Endpoints for managing product categories:</p>
 
+#### Get a list of all categories
+
 ```sh
-GET /api/categories/get-all-category: Get a list of all categories.
-POST /api/categories/add-category: Create a new category.
-PUT /api/categories/update-category: Update an existing category by ID.
-DELETE /api/categories/delete-category: Delete a category by ID.
+Endpoint: GET /api/categories/get-all-category
+
+Headers:
+Authorization: Bearer <your-access-token>
+```
+
+#### Create a new category
+
+```sh
+POST /api/categories/add-category
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "title": "Xyz"
+}
+```
+
+#### Update an existing category by ID
+
+```sh
+Endpoint: PUT /api/categories/update-category
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+{
+    "categoryId": "<MongoDB-object-id>",
+    "title": "Xyz"
+}
+```
+
+#### Delete a category by ID
+
+```sh
+Endpoint: DELETE /api/categories/delete-category
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+{
+    "categoryId": "<MongoDB-object-id>"
+}
 ```
 
 #### Product CRUD
