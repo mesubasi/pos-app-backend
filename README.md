@@ -175,11 +175,60 @@ Body:
 
 <p>Endpoints for managing products:</p>
 
+#### Create a new product
+
 ```sh
-POST /api/products/add-product: Get a list of all products.
-GET /api/products/get-all-product: Create a new product.
-PUT /api/products/update-product: Update an existing product by ID.
-DELETE /api/products/delete-product: Delete a product by ID.
+Endpoint: POST /api/products/add-product
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "title": "Xyz",
+    "img": "IMG Url",
+    "price": 10,
+    "category":"Fruit"
+
+}
+```
+
+#### Get a list of all products
+
+```sh
+Endpoint: GET /api/products/get-all-product
+
+Headers:
+Authorization: Bearer <your-access-token>
+```
+
+#### Update an existing product by ID
+
+```sh
+PUT /api/products/update-product
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "productId": "<MongoDB-object-id>",
+    "title": "Xyz"
+}
+```
+
+#### Delete a product by ID
+
+```sh
+DELETE /api/products/delete-product
+
+Headers:
+Authorization: Bearer <your-access-token>
+
+Body:
+{
+    "productId": "<MongoDB-object-id>"
+}
 ```
 
 ### Invoice CRUD
